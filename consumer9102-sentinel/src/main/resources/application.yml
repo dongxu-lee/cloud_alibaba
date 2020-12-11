@@ -1,0 +1,31 @@
+server:
+  port: 9102
+
+spring:
+  application:
+    name: consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+        port: 8719
+      datasource:
+        flow: #此处flow为自定义数据源名
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            data-id: ${spring.application.name}-flow-rules
+            gruopId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow #类型来自RuleType类
+        degrade: #此处flow为自定义数据源名
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            data-id: ${spring.application.name}-degrade-rules
+            gruopId: DEFAULT_GROUP
+            data-type: json
+            rule-type: degrade #类型来自RuleType类
+
+

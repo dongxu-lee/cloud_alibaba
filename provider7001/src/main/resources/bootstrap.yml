@@ -1,0 +1,21 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      # 锁定server端的配置文件（读取它的配置项）
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 9ae00c78-3a0a-43a1-bd1a-7e5684677227
+        group: DEFAULT_GROUP #默认的可以不配置
+        file-extension: yaml
+        extension-configs:
+          - dataId: abc.yaml
+          - dataId: 123.yaml
+
+
